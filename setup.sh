@@ -10,7 +10,7 @@ mkdir -p ~/.flatpak_dev/bin ~/flatpak_dev
 echo -e "${YELLOW}Created directories:${NC} ~/.flatpak_dev/bin and ~/flatpak_dev"
 
 # Step 2: Download flatpak_project_init script into ~/.flatpak_dev/bin
-wget -q -O ~/.flatpak_dev/bin/flatpak_project_init https://raw.githubusercontent.com/mikeisfreeman/flatpak-dev-setup/main/flatpak_project_init.sh
+wget -q -O ~/.flatpak_dev/bin/flatpak_project_init https://raw.githubusercontent.com/mikeisfreeman/flatpak-dev-setup/refs/heads/main/flatpak_project_init.sh
 echo -e "${GREEN}Downloaded flatpak_project_init script${NC}"
 
 # Step 3: Make the script executable
