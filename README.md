@@ -7,6 +7,8 @@ This project provides a quick setup script for initializing a Flatpak developmen
 #### Download and execute the setup script:
 ```bash
 wget -q -O - https://raw.githubusercontent.com/mikeisfreeman/flatpak-dev-setup/refs/heads/main/setup.sh | bash
+export PATH=$HOME/.flatpak_dev/bin:$PATH
+
 ```
 
 This command will:
