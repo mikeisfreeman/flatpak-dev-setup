@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Define color codes
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+# Step 1: Create necessary directories
+mkdir -p ~/.flatpak_dev/bin ~/flatpak_dev
+echo -e "${YELLOW}Created directories:${NC} ~/.flatpak_dev/bin and ~/flatpak_dev"
+
+# Step 2: Download flatpak_project_init script into ~/.flatpak_dev/bin
+wget -q -O ~/.flatpak_dev/bin/flatpak_project_init https://raw.githubusercontent.com/mikeisfreeman/flatpak-dev-setup/main/flatpak_project_init.sh
+echo -e "${GREEN}Downloaded flatpak_project_init script${NC}"
+
+# Step 3: Make the script executable
+chmod +x ~/.flatpak_dev/bin/flatpak_project_init
+echo -e "${YELLOW}Made flatpak_project_init script executable${NC}"
+
+# Step 4: Add ~/.flatpak_dev/bin to PATH
+if ! grep -q 'export PATH=$HOME/.flatpak_dev/bin:$PATH' ~/.bashrc; then
+    echo 'export PATH=$HOME/.flatpak_dev/bin:$PATH' >> ~/.bashrc
+    echo -e "${GREEN}Added ~/.flatpak_dev/bin to PATH in ~/.bashrc${NC}"
+else
+    echo -e "${YELLOW}~/.flatpak_dev/bin already in PATH${NC}"
+fi
+export PATH=$HOME/.flatpak_dev/bin:$PATH
+
+# Step 5: Optionally, check for and install Flatpak and Flatpak Builder
+if ! command -v flatpak &> /dev/null; then
+    sudo apt install -y flatpak
+    echo -e "${GREEN}Installed Flatpak${NC}"
+else
+    echo -e "${YELLOW}Flatpak already installed${NC}"
+fi
+if ! command -v flatpak-builder &> /dev/null; then
+    sudo apt install -y flatpak-builder
+    echo -e "${GREEN}Installed Flatpak Builder${NC}"
+else
+    echo -e "${YELLOW}Flatpak Builder already installed${NC}"
+fi
+
+echo -e "${GREEN}Flatpak development environment setup complete.${NC}"
+
+# Summary of created directories
+echo -e "${YELLOW}Summary of created directories:${NC}"
+echo -e "  - ${GREEN}~/.flatpak_dev/bin${NC}: Contains the flatpak_project_init script"
+echo -e "  - ${GREEN}~/flatpak_dev${NC}: Directory for your Flatpak development projects"
+echo -e "${YELLOW}You can now use 'flatpak_project_init' to start new Flatpak projects in ~/flatpak_dev/your_project_dir/${NC}"
