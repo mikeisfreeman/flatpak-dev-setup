@@ -40,11 +40,11 @@ else
     echo -e "${YELLOW}Flatpak Builder already installed${NC}"
 fi
 
-if flatpak list --runtime | grep -q "org.freedesktop.Sdk//21.08" &> /dev/null; then
-    flatpak install flathub org.freedesktop.Sdk//21.08 -y
-    echo -e "${GREEN}Installed freedesktop.Sdk//21.08${NC}"
+if flatpak list --runtime | grep -q "org.freedesktop.Sdk//23.08" &> /dev/null; then
+    flatpak install flathub org.freedesktop.Sdk//23.08 -y
+    echo -e "${GREEN}Installed freedesktop.Sdk//23.08${NC}"
 else
-    echo -e "${YELLOW}freedesktop.Sdk//21.08 already installed${NC}"
+    echo -e "${YELLOW}freedesktop.Sdk//23.08 already installed${NC}"
 fi
 
 
