@@ -26,7 +26,7 @@ else
 fi
 export PATH=$HOME/.flatpak_dev/bin:$PATH
 
-# Step 5: Optionally, check for and install Flatpak and Flatpak Builder
+# Step 5: Optionally, check for and install Flatpak, Flatpak Builder, and the freedesktop.SDK
 if ! command -v flatpak &> /dev/null; then
     sudo apt install -y flatpak
     echo -e "${GREEN}Installed Flatpak${NC}"
@@ -39,6 +39,14 @@ if ! command -v flatpak-builder &> /dev/null; then
 else
     echo -e "${YELLOW}Flatpak Builder already installed${NC}"
 fi
+
+if flatpak list --runtime | grep -q "org.freedesktop.Sdk//21.08" &> /dev/null; then
+    flatpak install flathub org.freedesktop.Sdk//21.08 -y
+    echo -e "${GREEN}Installed freedesktop.Sdk//21.08${NC}"
+else
+    echo -e "${YELLOW}freedesktop.Sdk//21.08 already installed${NC}"
+fi
+
 
 echo -e "${GREEN}Flatpak development environment setup complete.${NC}"
 
