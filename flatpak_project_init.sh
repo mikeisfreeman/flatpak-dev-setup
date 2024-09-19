@@ -53,7 +53,7 @@ cat <<EOL > "$project_dir/com.example.$project_name.json"
 {
   "id": "com.example.$project_name",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "21.08",
+  "runtime-version": "23.08",
   "sdk": "org.freedesktop.Sdk",
   "command": "$project_name",
   "modules": [
@@ -61,7 +61,23 @@ cat <<EOL > "$project_dir/com.example.$project_name.json"
       "name": "$project_name",
       "buildsystem": "simple",
       "build-commands": [
-        "pip3 install --no-deps --prefix=/app ."
+        "python -m pip install --no-deps --prefix=/app .",
+        "install -Dm644 icons/16x16/${project_name}.png /app/share/icons/hicolor/16x16/apps/${project_name}.png",
+        "install -Dm644 icons/32x32/${project_name}.png /app/share/icons/hicolor/32x32/apps/${project_name}.png",
+        "install -Dm644 icons/64x64/${project_name}.png /app/share/icons/hicolor/64x64/apps/${project_name}.png",
+        "install -Dm644 icons/128x128/${project_name}.png /app/share/icons/hicolor/128x128/apps/${project_name}.png",
+        "install -Dm644 icons/256x256/${project_name}.png /app/share/icons/hicolor/256x256/apps/${project_name}.png",
+        "install -Dm644 icons/512x512/${project_name}.png /app/share/icons/hicolor/512x512/apps/${project_name}.png",
+        "install -Dm644 icons/scalable/${project_name}.svg /app/share/icons/hicolor/scalable/apps/${project_name}.svg",
+
+        "install -Dm644 icons/16x16/${project_name}-dark.png /app/share/icons/hicolor/16x16/apps/${project_name}-dark.png",
+        "install -Dm644 icons/32x32/${project_name}-dark.png /app/share/icons/hicolor/32x32/apps/${project_name}-dark.png",
+        "install -Dm644 icons/64x64/${project_name}-dark.png /app/share/icons/hicolor/64x64/apps/${project_name}-dark.png",
+        "install -Dm644 icons/128x128/${project_name}-dark.png /app/share/icons/hicolor/128x128/apps/${project_name}-dark.png",
+        "install -Dm644 icons/256x256/${project_name}-dark.png /app/share/icons/hicolor/256x256/apps/${project_name}-dark.png",
+        "install -Dm644 icons/512x512/${project_name}-dark.png /app/share/icons/hicolor/512x512/apps/${project_name}-dark.png",
+        "install -Dm644 icons/scalable/${project_name}-dark.svg /app/share/icons/hicolor/scalable/apps/${project_name}-dark.svg",
+        "cp -r assets /app/share/${project_name}"
       ],
       "sources": [
         {
